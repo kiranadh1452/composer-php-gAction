@@ -25,8 +25,12 @@ jobs:
       - name: change a file
         run: node runMe.js
       
+      - name: Check if there are changes
+        id: changes
+        uses: UnicornGlobal/has-changes-action@v1.0.11
+      
       - name: Commit files changed by tool
-        if: always()
+        if: steps.changes.outputs.changed == 1
         run: |
           git config --global user.name 'Kiran Adhikari'
           git config --global user.email 'kiranadh1452@gmail.com'
