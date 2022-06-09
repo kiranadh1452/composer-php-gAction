@@ -31,8 +31,9 @@ jobs:
           git config --global user.name 'Kiran Adhikari'
           git config --global user.email 'kiranadh1452@gmail.com'
           git add .
-          git commit -m "[Robot]Automated commit"
-          git push -f
+          git commit -m "[Robot]Automated commit 12"
+          git pull --rebase https://github.com/kiranadh1452/composer-php-gAction.git ${{ github.head_ref }}
+          git push https://github.com/kiranadh1452/composer-php-gAction.git HEAD:${{ github.head_ref }}
 
       - name: Stop containers
         if: always()
