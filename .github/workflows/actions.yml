@@ -25,17 +25,18 @@ jobs:
       - name: change a file
         run: node runMe.js
       
-      - name: Check if there are changes
-        id: changes
-        uses: UnicornGlobal/has-changes-action@v1.0.11
-      
+      - name: Check for modified files
+        id: git-check
+        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
+
       - name: Commit files changed by tool
-        if: steps.changes.outputs.changed == 1
+        if: steps.git-check.outputs.modified == 'true'
         run: |
           git config --global user.name 'Kiran Adhikari'
           git config --global user.email 'kiranadh1452@gmail.com'
           git add .
           git commit -m "[Robot]Automated commit 12"
+          git pull --rebase https://github.com/kiranadh1452/composer-php-gAction.git ${{ github.head_ref }}
           git push https://github.com/kiranadh1452/composer-php-gAction.git HEAD:${{ github.head_ref }}
 
       - name: Stop containers
