@@ -24,6 +24,15 @@ jobs:
 
       - name: change a file
         run: node runMe.js
+      
+      - name: Commit files changed by tool
+        if: always()
+        run: |
+          git config --global user.name 'Kiran Adhikari'
+          git config --global user.email 'kiranadh1452@gmail.com'
+          git add .
+          git commit -m "[Robot]Automated commit"
+          git push -f
 
       - name: Stop containers
         if: always()
