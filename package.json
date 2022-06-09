@@ -1,0 +1,19 @@
+{
+  "name": "ci-test-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiranadh1452/composer-php-gAction.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kiranadh1452/composer-php-gAction/issues"
+  },
+  "homepage": "https://github.com/kiranadh1452/composer-php-gAction#readme"
+}
