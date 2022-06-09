@@ -1,0 +1,36 @@
+name: Playwright CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Chekout code
+        uses: actions/checkout@v3
+
+      - name: Start Containers
+        run: docker-compose -f "docker-compose.yml" up -d --build
+
+      - name: Setup php
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "7.1.3"
+
+      - name: Setup Composer
+        uses: "ramsey/composer-install@v2"
+
+      - name: Install the libraries required
+        run: composer install
+
+      - name: Run code sniffer and auto formatter
+        run: ./site/vendor/bin/phpcbf --ignore=./site/vendor ./
+
+      - name: Stop containers
+        if: always()
+        run: docker-compose -f "docker-compose.yml" down

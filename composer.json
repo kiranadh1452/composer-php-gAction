@@ -1,0 +1,11 @@
+{
+    "config" : {
+        "vendor-dir": "site/vendor",
+        "optimize-autoloader": true,
+        "classmap-authoritative": false
+    },
+    "require": {
+        "kunalvarma05/dropbox-php-sdk": "^0.2",
+        "squizlabs/php_codesniffer": "*"
+    }
+}
