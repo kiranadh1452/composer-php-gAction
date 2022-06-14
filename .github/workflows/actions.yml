@@ -45,7 +45,7 @@ jobs:
       - name: Install dependencies and complete setup for Joomla
         run: |
           cd tests/e2e/
-          npm ci
+          npm i
           node installJoomla.js
           pwd && ls
           cd ..
